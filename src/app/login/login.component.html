@@ -1,0 +1,76 @@
+<div class="container">
+        <br/>
+        <br/>
+    <div *ngIf = "!estaLogado">
+        <div>
+        
+            <div class="row">
+                <div class="col-5"></div>
+                <div class="col-4">
+
+                    <div class="row">
+                        <h1 style="color: #a9b0c2;  text-align: center; size: 25px">Login Usuario</h1>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="alert alert-danger" role="alert" *ngIf="noEstaLogado">
+                            El usuario NO esta logado correctamente.
+                        </div>
+                        <div class="alert alert-primary" role="alert" *ngIf="altaCorrecta">
+                            Se ha dado de alta al usuario con email {{emailLogin}} y password {{passwordLogin}}.
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="existeUsr">
+                            Ya existe un usuario con email {{emailLogin}} y password {{passwordLogin}}.
+                        </div>
+                        
+                    </div>
+
+                    <form  [formGroup]="user" (submit)="newUsr(user)">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="emailLogin"><strong>Email</strong></label>
+                                <input type="text" id="emailLogin" class="form-control" formControlName = "emailLogin" required>                           
+                            </div>
+                            <div *ngIf="user.controls.emailLogin.errors" class="errors">
+                                    <div *ngIf="user.controls.emailLogin.errors.required" >
+                                            El Email es obligatorio
+                                    </div>
+                                    <div *ngIf="user.controls.emailLogin.errors.email" >
+                                            El Email no esta bien formulado
+                                    </div>
+                                    <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="passwordLogin"><strong>Password</strong></label>
+                                <input type="password" id="passwordLogin" class="form-control" formControlName = "passwordLogin" required/>
+                            </div>
+                            <div *ngIf="user.controls.passwordLogin.errors" class="errors">
+                                <div *ngIf="user.controls.passwordLogin.errors.required" >
+                                        El Password es obligatorio
+                                </div>
+                                <br>
+                            </div>
+                        </div>    
+                        
+                        <div class="row">
+                            <div class="col-4">
+                                <button type="button" class="btn btn-primary" (click) = "loginUsr(formulario)">Login</button>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-secondary">Nuevo</button>
+                            </div>
+                        </div>    
+                    </form>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+        <div *ngIf = "estaLogado">
+        
+            <router-outlet></router-outlet>>
+        </div>
+</div>

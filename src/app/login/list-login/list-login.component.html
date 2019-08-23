@@ -1,0 +1,57 @@
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="col-3" style="text-align: right">
+                <a [routerLink] = "['/']" style="color: #a9b0c2; text-align: right" >{{usuarioActual.email}}&nbsp;&nbsp;<img src="../../../assets/logout.jpeg" alt="Log Out" style="width: 40px"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h1 style="color: #a9b0c2; text-align: center; size: 25px">Listado de los usuarios logados</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="alert alert-primary" role="alert" *ngIf="borradoCorrectamente">
+            El usuario ha sido borrado correctamente correctamente.
+        </div>
+        <div class="alert alert-primary" role="alert" *ngIf="updateCorrectamente">
+            Los datos del usuario ha sido modificado correctamente.
+        </div>
+      
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="col-7">Email</th>
+                    <th class="col-3">Password</th>
+                    <th class="col-1"></th>
+                    <th class="col-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usr of usrLogados">
+                    <td class="col-7">
+                            <input type="text" id="email" class="form-control" [(ngModel)] = "usr.email"/>
+                    </td>
+                    <td class="col-3">
+                            <input type="password" id="password" class="form-control" [(ngModel)] = "usr.password"/>
+                    </td>
+                    <td class="col-1">
+                        <a (click)="updateUsr(usr)"><img src="../../../assets/save.jpeg" alt="Guardar Cambios" style="width: 40px"></a>
+                    </td>
+                    <td class="col-2">
+                        <a (click)="borrarUsr(usr)"><img src="../../../assets/borrar.png" alt="Borrar usuario" style="width: 40px"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div >
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,12 @@
+<section id="altaLogin">
+    <h1>Alta Nuevo Usuario</h1>
+        <div class="form-group">
+            <label for="emailAlta">Email address</label>
+            <input type="email" class="form-control" id="emailAlta" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="emailAlta">
+        </div>
+        <div class="form-group">
+            <label for="passwordAlta">Password</label>
+            <input type="password" class="form-control" id="passwordAlta" placeholder="Password" [(ngModel)]="passwordAlta">
+        </div>
+        <button type="button" class="btn btn-primary" (click) = "grabarUsr()">Submit</button>
+</section>
